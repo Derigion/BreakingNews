@@ -33,14 +33,15 @@ $ (function() {
         e.preventDefault();
 
         var data = {
-            username : $('#form_reg [name=username]').val,
+            username : $('#form_reg [name=username]').val(),
             password : $('#form_reg [name=password]').val()
         }
+        console.log(data);
 
-        $.post("http://ajax.frontend.itheima.net/api/reguser", data,
+        $.post("/api/reguser", data,
             function (res) {
                 if (res.status !== 0) {
-                    return layer.msg(res,msg);
+                    return layer.msg(res.message);
                 }
                 layer.msg("注册成功，请登录");
                 $('#link_login').click();            }
